@@ -87,7 +87,7 @@ function Waste (){
             <div className='mt-4 container'>
                 <div className='row'>
                     <div className='col align-self-center'>
-                        <h1 className="text-start">Lists of waste bins of system</h1>
+                        <h1 className="text-center">List of waste bins of system</h1>
                         <div className='row'>
 
                         <select class="form-select" aria-label="Default select example"
