@@ -25,7 +25,7 @@ function Rubbish() {
         type: 'Plastic',
         quantity: 60,
       },
-      // Thêm dữ liệu khác tùy ý
+    
   ];
 
   const [selectedLocal, setSelectedLocal] = useState('All');
@@ -49,7 +49,7 @@ function Rubbish() {
       <div className='mt-4 container'>
         <div className='row'>
           <div className='col'>
-            <h1 className="text-center">Lists of waste bins of system</h1>
+            <h1 className="text-center">Garbage statistics</h1>
             <select className="form-select" value={selectedLocal} onChange={handleLocalChange}>
               {localOptions.map((localOption) => (
                 <option key={localOption} value={localOption}>
