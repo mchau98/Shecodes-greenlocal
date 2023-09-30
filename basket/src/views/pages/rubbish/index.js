@@ -50,7 +50,9 @@ function Rubbish() {
         <div className='row'>
           <div className='col'>
             <h1 className="text-center">Garbage statistics</h1>
-            <select className="form-select" value={selectedLocal} onChange={handleLocalChange}>
+            <select className="form-select" aria-label="Default select example" 
+            style={{width : '30%', marginLeft : '14px'}}
+            value={selectedLocal} onChange={handleLocalChange}>
               {localOptions.map((localOption) => (
                 <option key={localOption} value={localOption}>
                   {localOption}
