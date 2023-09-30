@@ -4,8 +4,29 @@ import './index.css';
 
 function Rubbish() {
   const wasteData = [
-    // ...Dữ liệu rác của bạn
-  ];
+      {
+        id: 1,
+        date: '2023-09-01',
+        local: 'local A',
+        type: 'Plastic',
+        quantity: 50,
+      },
+      {
+        id: 2,
+        date: '2023-09-01',
+        local: 'local B',
+        type: 'Paper',
+        quantity: 30,
+      },
+      {
+        id: 3,
+        date: '2023-09-02',
+        local: 'local A',
+        type: 'Plastic',
+        quantity: 60,
+      },
+      // Thêm dữ liệu khác tùy ý
+    ];
 
   const [selectedLocal, setSelectedLocal] = useState('All');
   const [localMenuOpen, setLocalMenuOpen] = useState(false); // State để kiểm tra xem menu local có mở hay không
