@@ -7,40 +7,42 @@ function Rubbish() {
       {
         id: 1,
         date: '2023-09-01',
-        local: 'local A',
+        local: 'Local A',
         type: 'Plastic',
         quantity: 50,
       },
       {
         id: 2,
         date: '2023-09-01',
-        local: 'local B',
+        local: 'Local B',
         type: 'Paper',
         quantity: 30,
       },
       {
         id: 3,
         date: '2023-09-02',
-        local: 'local A',
+        local: 'Local A',
         type: 'Plastic',
         quantity: 60,
       },
       // Thêm dữ liệu khác tùy ý
-    ];
+  ];
 
   const [selectedLocal, setSelectedLocal] = useState('All');
-  const [localMenuOpen, setLocalMenuOpen] = useState(false); // State để kiểm tra xem menu local có mở hay không
 
-  const handleLocalChange = (local) => {
-    setSelectedLocal(local);
-    setLocalMenuOpen(false);
+  const handleLocalChange = (event) => {
+    setSelectedLocal(event.target.value);
   };
 
-  const toggleLocalMenu = () => {
-    setLocalMenuOpen(!localMenuOpen);
-  };
+  const filteredWasteData = wasteData.filter((item) => {
+    if (selectedLocal === 'All') {
+      return true; // Hiển thị tất cả dữ liệu nếu 'All' được chọn
+    }
 
-  const localOptions = ['All', 'Local A', 'Local B', 'Local C', /* Thêm các local khác */];
+    return item.local === selectedLocal; // Lọc theo local
+  });
+
+  const localOptions = ['All', 'Local A', 'Local B', 'Local C', 'Local D'];
 
   return (
     <div>
@@ -48,50 +50,33 @@ function Rubbish() {
         <div className='row'>
           <div className='col'>
             <h1 className="text-center">Lists of waste bins of system</h1>
-            <div className="dropdown">
-              <button
-                className="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="localDropdown"
-                onClick={toggleLocalMenu}
-              >
-                {selectedLocal}
-              </button>
-              {localMenuOpen && (
-                <ul className="dropdown-menu" aria-labelledby="localDropdown">
-                  {localOptions.map((localOption) => (
-                    <li key={localOption}>
-                      <button
-                        className="dropdown-item"
-                        onClick={() => handleLocalChange(localOption)}
-                      >
-                        {localOption}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            <select className="form-select" value={selectedLocal} onChange={handleLocalChange}>
+              {localOptions.map((localOption) => (
+                <option key={localOption} value={localOption}>
+                  {localOption}
+                </option>
+              ))}
+            </select>
             <table className="table table-bordered table-success table-striped mt-10">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Local</th>
+                  <th>ID</th>
                   <th>Type</th>
+                  <th>Local</th>
+                  <th>Date</th>
                   <th>Quantity (kg)</th>
                 </tr>
               </thead>
               <tbody>
-                {wasteData
-                  .filter((item) => selectedLocal === 'All' || item.local === selectedLocal)
-                  .map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.date}</td>
-                      <td>{item.local}</td>
-                      <td>{item.type}</td>
-                      <td>{item.quantity}</td>
-                    </tr>
-                  ))}
+                {filteredWasteData.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.type}</td>
+                    <td>{item.local}</td>
+                    <td>{item.date}</td>
+                    <td>{item.quantity}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
