@@ -1,70 +1,10 @@
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from 'react'
+import data from '../../../db'
 function Waste (){
 
-    const waste = [
-        {
-            id : 1,
-            local : 'Ho Chi Minh',
-            weight : 5.6,
-            status : 'full'
-        },
-        {
-            id : 2,
-            local : 'Ho Chi Minh',
-            weight : 5.6,
-            status : 'full'
-        },
-        {
-            id : 3,
-            local : 'Ho Chi Minh',
-            weight : 5.6,
-            status : 'full'
-        },
-        {
-            id : 4,
-            local : 'Ho Chi Minh',
-            weight : 5.6,
-            status : 'full'
-        },
-        {
-            id : 5,
-            local : 'Ho Chi Minh',
-            weight : 5.6,
-            status : 'no full'
-        },
-        {
-            id : 6,
-            local : 'Bac Ninh',
-            weight : 5.6,
-            status : 'full'
-        },
-        {
-            id : 7,
-            local : 'Bac Ninh',
-            weight : 5.6,
-            status : 'no full'
-        },
-        {
-            id : 8,
-            local : 'Ha Noi',
-            weight : 5.6,
-            status : 'no full'
-        },
-        {
-            id : 9,
-            local : 'Ha Noi',
-            weight : 5.6,
-            status : 'full'
-        },
-        {
-            id : 10,
-            local : 'Ha Noi',
-            weight : 5.6,
-            status : 'full'
-        }
-    ]
+    const waste = data.waste_bins;
    
     const [filterValue, setfilterValue] = useState("")
     const [filterValue1, setfilterValue1] = useState("")
@@ -98,7 +38,12 @@ function Waste (){
                             <option selected>Local</option>
                             <option value="Ha Noi">Ha Noi</option>
                             <option value="Ho Chi Minh">Ho Chi Minh</option>
-                            <option value="Da Nang">Da Nang</option>
+                            <option value="Khanh Hoa">Khanh Hoa</option>
+                            <option value="Quang Ninh">Quang Ninh</option>
+                            <option value="Dong Nai">Dong Nai</option>
+                            <option value="Hai Phong">Hai Phong</option>
+                            <option value="Can Tho">Can Tho</option>
+
                         </select>
                         <select class="form-select" aria-label="Default select example"
                             style = {{width : '30%'}}
@@ -125,9 +70,9 @@ function Waste (){
                                     return (
                                         <tbody>
                                             <tr>
-                                            <th scope="row">{item.id}</th>
+                                            <th scope="row">{item.ID}</th>
                                             <td>{item.local}</td>
-                                            <td>{item.weight}</td>
+                                            <td>{item.waste_total}</td>
                                             <td>{item.status}</td>
                                             </tr>
                                         </tbody>

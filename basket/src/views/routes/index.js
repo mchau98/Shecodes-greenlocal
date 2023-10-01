@@ -9,7 +9,10 @@ import Login from '../pages/login';
 import MainLayout from '../../components/mainlayout'
 import RegisterLayout from '../../components/resgiterlayout';
 function AllRoutes (){
+  const user = JSON.parse(localStorage.getItem('user-infor'));
+
     return (
+        
         <Routes>
           <Route path="/register" element={
           <RegisterLayout>
@@ -26,19 +29,25 @@ function AllRoutes (){
               <Homepage/>
             </MainLayout>
           } />
-          <Route path="/rubbish" element={
-            <MainLayout>
+          <Route path="/rubbish" element={ user ? <MainLayout>
               <Rubbish/>
-            </MainLayout>
-          } />
-          <Route path="/user" element={
+            </MainLayout> :
             <MainLayout>
-              <User/>
+              <Homepage/>
             </MainLayout>
           } />
-          <Route path="/waste-bins" element={
-          <MainLayout>
+          <Route path="/user" element={ user ? <MainLayout>
+              <User/>
+            </MainLayout> :
+            <MainLayout>
+              <Homepage/>
+            </MainLayout>
+          } />
+          <Route path="/waste-bins" element={ user ? <MainLayout>
             <Waste/>
+            </MainLayout> :
+          <MainLayout>
+            <Homepage/>
           </MainLayout>
           } />
         </Routes>
