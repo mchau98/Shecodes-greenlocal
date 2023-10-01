@@ -43,6 +43,9 @@ function MainLayout({children}){
                 {children}
             </div>
             <div className='footer'>
+            <footer className="text-center mt-20">
+        &copy; {new Date().getFullYear()} Green Local
+      </footer>
             </div>
         </div>
     )
