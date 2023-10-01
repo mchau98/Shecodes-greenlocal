@@ -6,15 +6,32 @@ import Rubbish from '../pages/rubbish';
 import React from 'react';
 import Register from '../pages/register';
 import Login from '../pages/login';
+import MainLayout from '../../components/mainlayout'
 function AllRoutes (){
     return (
         <Routes>
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/" element={<Homepage/>} />
-          <Route path="/rubbish" element={<Rubbish/>} />
-          <Route path="/user" element={<User/>} />
-          <Route path="/waster-bins" element={<Waste/>} />
+          <Route path="/" element={
+            <MainLayout>
+              <Homepage/>
+            </MainLayout>
+          } />
+          <Route path="/rubbish" element={
+            <MainLayout>
+              <Rubbish/>
+            </MainLayout>
+          } />
+          <Route path="/user" element={
+            <MainLayout>
+              <User/>
+            </MainLayout>
+          } />
+          <Route path="/waste-bins" element={
+          <MainLayout>
+            <Waste/>
+          </MainLayout>
+          } />
         </Routes>
     )
 }
