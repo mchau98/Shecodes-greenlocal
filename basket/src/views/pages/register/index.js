@@ -1,4 +1,5 @@
 import './index.css'
+import {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link, useNavigate} from 'react-router-dom';
 import { Button, Checkbox, Form, Input, Alert, Space } from 'antd';
@@ -6,7 +7,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function Register (){
     const nagivate = useNavigate();
-    const onFinish = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+     const onFinish = () => {
+        const userObject = {
+            email : email
+        }
+        localStorage.setItem('user-infor', JSON.stringify(userObject));
         toast.success('Register sucessfully', {
             position: "top-center",
             autoClose: 3000,
@@ -35,6 +42,16 @@ function Register (){
         });
   };
 
+    function handleEmail(e){
+        setEmail(e.target.value);
+        console.log(e.target.value);
+    }
+    function handlePassword(e)
+    {
+        setPassword(e.target.value);
+        console.log(e.target.value);
+    }
+
     return (
         <div class="container">
         <div class="row">
@@ -61,16 +78,18 @@ function Register (){
                         autoComplete="off"
                     >
                         <Form.Item
-                        label="Username"
-                        name="username"
+                        label="Email"
+                        name="email"
                         rules={[
                             {
                             required: true,
-                            message: 'Please input your username!',
+                            message: 'Please input your email!',
                             },
                         ]}
                         >
-                        <Input />
+                        <Input onChange={handleEmail}
+                            value = {email}
+                        />
                         </Form.Item>
 
                         <Form.Item
@@ -83,7 +102,9 @@ function Register (){
                             },
                         ]}
                         >
-                        <Input.Password />
+                        <Input.Password onChange={handlePassword} 
+                            value={password}
+                        />
                         </Form.Item>
 
                         <Form.Item

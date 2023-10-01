@@ -7,11 +7,20 @@ import React from 'react';
 import Register from '../pages/register';
 import Login from '../pages/login';
 import MainLayout from '../../components/mainlayout'
+import RegisterLayout from '../../components/resgiterlayout';
 function AllRoutes (){
     return (
         <Routes>
-          <Route path="/register" element={<Register/>} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={
+          <RegisterLayout>
+            <Register/>
+          </RegisterLayout>
+          } />
+          <Route path="/login" element={
+          <RegisterLayout>
+            <Login/>
+          </RegisterLayout>
+          } />
           <Route path="/" element={
             <MainLayout>
               <Homepage/>

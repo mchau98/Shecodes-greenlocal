@@ -9,26 +9,27 @@ import 'react-toastify/dist/ReactToastify.css';
 function Login() {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(null);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-  const onFinish = (values) => {
-    // Thực hiện xác thực tại đây (thay thế bằng xác thực thực tế)
-    if (values.username === 'yourUsername' && values.password === 'yourPassword') {
-      toast.success('Login successful', {
-        position: 'top-center',
+  const onFinish = () => {
+      const userObject = {
+        email : email
+    }
+    localStorage.setItem('user-infor', JSON.stringify(userObject));
+    toast.success('Login sucessfully', {
+        position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: 'colored',
-      });
-      setTimeout(() => {
-        navigate('/home'); // Chuyển hướng đến trang homepage sau khi đăng nhập thành công
-      }, 3000);
-    } else {
-      setLoginError('Invalid username or password'); // Đặt thông báo lỗi đăng nhập
-    }
+        theme: "colored",
+        });
+    setTimeout(() => {
+        navigate('/')
+    }, 3000);
   };
 
   const onFinishFailed = () => {
@@ -43,6 +44,14 @@ function Login() {
       theme: 'colored',
     });
   };
+
+  function handleEmail (e){
+    setEmail(e.target.value);
+  }
+
+  function handlePassword(e){
+    setPassword(e.target.value);
+  }
 
   return (
     <div className="container">
@@ -70,16 +79,16 @@ function Login() {
                 autoComplete="off"
               >
                 <Form.Item
-                  label="Username"
-                  name="username"
+                  label="Email"
+                  name="Email"
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your username!',
+                      message: 'Please input your Email!',
                     },
                   ]}
                 >
-                  <Input />
+                  <Input onChange={handleEmail} value={email}/>
                 </Form.Item>
 
                 <Form.Item
@@ -92,7 +101,7 @@ function Login() {
                     },
                   ]}
                 >
-                  <Input.Password />
+                  <Input.Password onChange={handlePassword} value={password}/>
                 </Form.Item>
 
                 <Form.Item
